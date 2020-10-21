@@ -43,5 +43,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    implementation 'com.github.Drumber.RemoteLight:remotelight-core:v0.2.4'
+    implementation ('com.github.Drumber.RemoteLight:remotelight-core:v0.2.4') {
+        exclude group: "jorensix", module: "TarsosDSP"
+        exclude group: "bildspur", module: "artnet4j"
+        exclude group: "sjoerdvankreel", module: "xt-audio"
+    }
+    implementation files('..\\libs\\artnet4j-0.6.1.1.jar')
+    implementation files('..\\libs\\com.xt-audio.xt-1.0.5.jar')
+    implementation files('..\\libs\\TarsosDSP-2.4.jar')
 }
