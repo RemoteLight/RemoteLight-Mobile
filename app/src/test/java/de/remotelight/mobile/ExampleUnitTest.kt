@@ -1,4 +1,4 @@
-package de.remotelight.app
+package de.remotelight.mobile
 
 import org.junit.Test
 
