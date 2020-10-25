@@ -8,7 +8,7 @@
     <color name="colorAccentDark">#003c8f</color>
 
     <color name="colorAccentSelected">#78bbe5</color>
-    <color name="colorSelected">#0D000000</color>
+    <color name="colorSelected">#33000000</color>
 
     <color name="colorPrimaryText">#000000</color>
     <color name="colorSecondaryText">#99000000</color>
