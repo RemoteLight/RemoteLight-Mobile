@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">RemoteLight</string>
     <string name="title_outputs">Outputs</string>
-    <string name="title_activity_test">TestActivity</string>
+    <string name="title_colors">Colors</string>
     <string name="title_animations">Animations</string>
     <string name="title_scenes">Scenes</string>
     <string name="title_musicsync">MusicSync</string>

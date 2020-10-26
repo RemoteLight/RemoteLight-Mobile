@@ -10,6 +10,11 @@
             android:title="@string/title_outputs" />
 
         <item
+            android:id="@+id/nav_colors"
+            android:icon="@drawable/ic_menu_color_palette"
+            android:title="@string/title_colors" />
+
+        <item
             android:id="@+id/nav_animations"
             android:icon="@drawable/ic_menu_animation"
             android:title="@string/title_animations" />

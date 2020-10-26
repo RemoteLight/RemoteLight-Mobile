@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_main" />
 
     <fragment
+        android:id="@+id/nav_colors"
+        android:name="de.remotelight.mobile.ui.colors.ColorsFragment"
+        android:label="@string/title_colors"
+        tools:layout="@layout/fragment_colors" />
+
+    <fragment
         android:id="@+id/nav_animations"
         android:name="de.remotelight.mobile.ui.animations.AnimationsFragment"
         android:label="@string/title_animations"
