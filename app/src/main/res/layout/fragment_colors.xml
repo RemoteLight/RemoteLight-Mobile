@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="30dp"
+    android:padding="10dp"
     tools:context=".ui.animations.AnimationsFragment">
 
     <com.apandroid.colorwheel.ColorWheel
@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
+        android:paddingHorizontal="20dp"
         android:layout_above="@id/gradientBar" />
 
     <com.apandroid.colorwheel.gradientseekbar.GradientSeekBar
@@ -20,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
+        android:padding="20dp"
         app:asb_orientation="horizontal"/>
 
 </RelativeLayout>

@@ -32,6 +32,7 @@ class ColorsFragment : Fragment() {
         colorWheel.rgb = selectedColor
         gradientBar.startColor = Color.BLACK
         gradientBar.endColor = selectedColor
+        gradientBar.offset = 1.0f
 
         // add color wheel listener
         colorWheel.colorChangeListener = {rgb: Int ->
