@@ -28,7 +28,7 @@ class AnimationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val rvAnimations = view.findViewById<RecyclerView>(R.id.rvAmimations)
+        val rvAnimations = view.findViewById<RecyclerView>(R.id.rvAnimations)
         rvAnimations.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = EffectRecyclerViewAdapter()

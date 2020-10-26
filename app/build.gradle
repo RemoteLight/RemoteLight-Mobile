@@ -56,6 +56,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
 
+    // Color wheel https://github.com/AntonPopoff/android-color-wheel
+    implementation "com.apandroid:colorwheel:1.1.12"
+
     // RemoteLight
     implementation ('com.github.Drumber.RemoteLight:remotelight-core:718642879b') {
         exclude group: "jorensix", module: "TarsosDSP"
