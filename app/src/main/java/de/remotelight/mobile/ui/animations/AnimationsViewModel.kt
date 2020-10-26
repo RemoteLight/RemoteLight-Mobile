@@ -3,11 +3,19 @@ package de.remotelight.mobile.ui.animations
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import de.lars.remotelightcore.RemoteLightCore
 
 class AnimationsViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is animations Fragment"
+    private val animations: MutableLiveData<List<String>> by lazy {
+        MutableLiveData<List<String>>(loadAnimations())
     }
-    val text: LiveData<String> = _text
+
+    fun getAnimations() : LiveData<List<String>> = animations
+
+    private fun loadAnimations(): List<String> {
+        val animationList = RemoteLightCore.getInstance().animationManager.animations
+        return animationList.map { it.displayname }
+    }
+
 }
