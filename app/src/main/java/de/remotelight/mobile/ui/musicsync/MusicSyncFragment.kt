@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.remotelight.mobile.R
-import de.remotelight.mobile.ui.custom.EffectRecyclerViewAdapter
+import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 
 class MusicSyncFragment : Fragment() {
 

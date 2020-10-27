@@ -1,4 +1,4 @@
-package de.remotelight.mobile.ui.custom
+package de.remotelight.mobile.custom
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
