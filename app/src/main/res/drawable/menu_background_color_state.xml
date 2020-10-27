@@ -2,11 +2,11 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/background_round_padded"
+        android:drawable="@drawable/bg_menu_round_padded"
         android:state_checked="true" />
 
     <item
-        android:drawable="@drawable/background_round_padded_pressed"
+        android:drawable="@drawable/bg_menu_round_padded_pressed"
         android:state_window_focused="true" />
 
 </selector>

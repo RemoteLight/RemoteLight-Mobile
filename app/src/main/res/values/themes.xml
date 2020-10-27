@@ -4,8 +4,12 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorOnPrimary">@color/colorPrimaryText</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Material Components Theme -->
+        <item name="materialThemeOverlay">@style/Widget.App.ThemeOverlay</item>
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
@@ -18,6 +22,11 @@
         <item name="drawableNavigationItemBackground">@drawable/menu_background_color_state</item>
     </style>
 
+    <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="materialThemeOverlay">@style/Widget.App.ToolbarOverlay</item>
+    </style>
+
+    <!-- Navigation View Style -->
     <style name="Widget.Custom.NavigationView" parent="Widget.Design.NavigationView">
         <item name="itemTextColor">?attr/colorNavigationItem</item>
         <item name="itemIconTint">?attr/colorNavigationItem</item>
@@ -29,10 +38,16 @@
         <item name="colorControlHighlight">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.RemoteLightMobile.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <!-- Material Theme Overlays -->
+    <style name="Widget.App.ThemeOverlay" parent="">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccentDark</item>
     </style>
 
-    <style name="Theme.RemoteLightMobile.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Widget.App.ToolbarOverlay" parent="">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorPrimaryText</item>
+    </style>
+
 </resources>

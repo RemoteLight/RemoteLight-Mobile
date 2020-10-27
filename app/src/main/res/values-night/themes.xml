@@ -4,8 +4,12 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorOnPrimary">@color/colorPrimaryText</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Material Components Theme -->
+        <item name="materialThemeOverlay">@style/Widget.App.ThemeOverlay</item>
+        <item name="toolbarStyle">@style/Widget.App.Toolbar</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
