@@ -6,27 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.apandroid.colorwheel.ColorWheel
-import com.apandroid.colorwheel.gradientseekbar.GradientSeekBar
 import de.lars.remotelightcore.RemoteLightCore
-import de.remotelight.mobile.R
+import de.remotelight.mobile.databinding.FragmentColorsBinding
 
 class ColorsFragment : Fragment() {
 
+    private var _binding: FragmentColorsBinding? = null
+    private val binding get() = _binding!!
     private lateinit var colorsViewModel: ColorsViewModel
     private var selectedColor = Color.RED
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         colorsViewModel = ViewModelProvider(this).get(ColorsViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_colors, container, false)
+        _binding = FragmentColorsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val colorWheel = view.findViewById<ColorWheel>(R.id.colorWheel)
-        val gradientBar = view.findViewById<GradientSeekBar>(R.id.gradientBar)
+        val colorWheel = binding.colorWheel
+        val gradientBar = binding.gradientBar
 
         // set defaults
         colorWheel.rgb = selectedColor
@@ -48,6 +50,17 @@ class ColorsFragment : Fragment() {
             // output color
             outputColor(calcColor(rgb, offset))
         }
+
+        // observe view model
+        colorsViewModel.getColor().observe(viewLifecycleOwner, Observer {
+            setColor(it)
+        })
+    }
+
+    private fun setColor(color: de.lars.remotelightcore.utils.color.Color) {
+        val hsb = color.hsbValues
+        binding.colorWheel.rgb = color.rgb
+        binding.gradientBar.offset = hsb[2]
     }
 
     private fun calcColor(rgb: Int, offset: Float): Int {
