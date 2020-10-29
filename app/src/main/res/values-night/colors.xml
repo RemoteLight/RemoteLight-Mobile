@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#202020</color>
     <color name="colorPrimaryDark">#121212</color>
-    <color name="colorAccent">#054B9D</color>
+    <color name="colorPrimaryDarkSurface">#202020</color>
 
+    <color name="colorAccent">#054B9D</color>
     <color name="colorAccentSelected">#313b59</color>
     <color name="colorSelected">#33FFFFFF</color>
 

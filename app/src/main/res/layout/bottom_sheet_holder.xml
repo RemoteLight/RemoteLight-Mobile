@@ -7,9 +7,17 @@
     android:paddingVertical="@dimen/sheet_vertical_padding"
     android:paddingHorizontal="@dimen/sheet_horizontal_padding"
     android:background="@drawable/bg_bottom_sheet"
+    android:elevation="8dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     app:behavior_hideable="true"
     app:behavior_peekHeight="@dimen/sheet_peek_height"
     android:id="@+id/bottom_sheet_holder_root">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:src="@drawable/bg_rectangle_round"
+        android:layout_marginBottom="@dimen/sheet_vertical_padding"
+        android:layout_gravity="center" />
 
 </LinearLayout>

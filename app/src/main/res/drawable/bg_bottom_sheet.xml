@@ -6,6 +6,6 @@
         android:topRightRadius="@dimen/sheet_corner_radius"
         android:topLeftRadius="@dimen/sheet_corner_radius" />
 
-    <solid android:color="@color/colorPrimary" />
+    <solid android:color="@color/colorPrimaryDarkSurface" />
 
 </shape>
