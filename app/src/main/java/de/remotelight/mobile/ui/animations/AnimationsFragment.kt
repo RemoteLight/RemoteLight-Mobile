@@ -42,16 +42,20 @@ class AnimationsFragment : Fragment() {
         val bottomSheetLayout = SpeedBottomSheetLayout(context, bottomSheet)
         bottomSheetLayout.sliderSpeed.slider.apply {
             addOnChangeListener { slider, value, fromUser ->
-                // TODO use view model to observe speed value
+                animationsViewModel.setSpeed(value.toInt())
             }
             valueFrom = 0.0f
             valueTo = 200.0f
             stepSize = 1.0f
         }
 
-        // observe view model
+        // observe live data
         animationsViewModel.getAnimations().observe(viewLifecycleOwner, Observer {
             (rvAnimations.adapter as EffectRecyclerViewAdapter).setList(it)
+        })
+
+        animationsViewModel.speedData.observe(viewLifecycleOwner, Observer {
+            bottomSheetLayout.sliderSpeed.slider.value = it.toFloat()
         })
     }
 
