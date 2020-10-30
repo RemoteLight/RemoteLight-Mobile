@@ -75,4 +75,9 @@ class ColorsFragment : Fragment() {
         RemoteLightCore.getInstance().colorManager.showColor(color)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 }

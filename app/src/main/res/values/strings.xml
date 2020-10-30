@@ -11,9 +11,7 @@
     <string name="nav_header_title">RemoteLight</string>
     <string name="nav_header_subtitle">LED Control Software</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="label_brightness">Brightness</string>
     <string name="label_speed">Speed</string>
+    <string name="des_add_output">Add a new output</string>
 </resources>
