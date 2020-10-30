@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.databinding.FragmentMainBinding
+import de.remotelight.mobile.utils.Converter
 
 /**
  * Fragment that shows and set ups devices.
@@ -39,8 +40,16 @@ class MainFragment : Fragment() {
 
         // floating action button
         binding.fabAddOutput.setOnClickListener {
-
+            val addOutputFragment = AddOutputFragment()
+            addOutputFragment.show(parentFragmentManager, addOutputFragment.tag)
         }
+
+        // register add-output-fragment listener
+        parentFragmentManager.setFragmentResultListener(AddOutputFragment.REQUEST_KEY, viewLifecycleOwner, { requestKey, result ->
+            val selectedOutput = Converter.convertOutputMenuId(result.getInt(AddOutputFragment.KEY_DATA))
+            println("### selected: $selectedOutput")
+            // TODO: show setup screen
+        })
     }
 
 }

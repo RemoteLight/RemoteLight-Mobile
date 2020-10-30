@@ -13,5 +13,14 @@
 
     <string name="label_brightness">Brightness</string>
     <string name="label_speed">Speed</string>
-    <string name="des_add_output">Add a new output</string>
+    <string name="title_add_output">Add a new output</string>
+    <string name="title_serial">Serial</string>
+    <string name="title_glediator">Glediator</string>
+    <string name="title_network">Network</string>
+    <string name="title_artnet">Art-Net</string>
+    <string name="title_e131">E1.31</string>
+    <string name="title_virtual">Virtual</string>
+    <string name="title_chain">Chain</string>
+    <string name="title_multi">Multi</string>
+    <string name="title_rlserver">RemoteLightServer</string>
 </resources>

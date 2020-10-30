@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_menu_output_serial"
+            android:title="@string/title_serial">
+            <menu>
+                <item
+                    android:id="@+id/nav_output_glediator"
+                    android:title="@string/title_glediator"/>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_output_network"
+            android:title="@string/title_network">
+            <menu>
+                <item
+                    android:id="@+id/nav_output_rlserver"
+                    android:title="@string/title_rlserver"/>
+
+                <item
+                    android:id="@+id/nav_output_artnet"
+                    android:title="@string/title_artnet"/>
+
+                <item
+                    android:id="@+id/nav_output_e131"
+                    android:title="@string/title_e131"/>
+            </menu>
+        </item>
+
+        <item
+            android:id="@+id/nav_menu_output_virtual"
+            android:title="@string/title_virtual">
+            <menu>
+                <item
+                    android:id="@+id/nav_output_virtual"
+                    android:title="@string/title_virtual"/>
+
+                <item
+                    android:id="@+id/nav_output_chain"
+                    android:title="@string/title_chain"/>
+
+                <item
+                    android:id="@+id/nav_output_multi"
+                    android:title="@string/title_multi"/>
+            </menu>
+        </item>
+
+    </group>
+
+</menu>

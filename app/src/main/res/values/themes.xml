@@ -6,6 +6,7 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/colorPrimaryText</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/colorAccentLight</item>
 
         <!-- Material Components Theme -->
         <item name="materialThemeOverlay">@style/Widget.App.ThemeOverlay</item>
@@ -20,6 +21,8 @@
         <item name="colorNavigationItem">@color/menu_item_color_state</item>
         <item name="colorNavigationItemSelected">@color/colorPrimaryText</item>
         <item name="drawableNavigationItemBackground">@drawable/menu_background_color_state</item>
+
+        <item name="bottomSheetDialogTheme">@style/Widget.App.BottomSheetDialog</item>
     </style>
 
     <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
@@ -38,6 +41,16 @@
         <item name="colorControlHighlight">@android:color/transparent</item>
     </style>
 
+    <!-- Modal Bottom Sheet Style -->
+    <style name="Widget.App.BottomSheetDialog" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.App.BottomSheetFragment</item>
+    </style>
+
+    <style name="Widget.App.BottomSheetFragment" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="android:windowIsFloating">false</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.RoundCorners</item>
+    </style>
+
     <!-- Material Theme Overlays -->
     <style name="Widget.App.ThemeOverlay" parent="">
         <item name="colorPrimary">@color/colorAccent</item>
@@ -48,6 +61,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorOnPrimary">@color/colorPrimaryText</item>
+    </style>
+
+    <!-- Shape Appearance Overlays -->
+    <style name="ShapeAppearance.RoundCorners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">@dimen/sheet_corner_radius</item>
+        <item name="cornerSizeTopLeft">@dimen/sheet_corner_radius</item>
     </style>
 
 </resources>
