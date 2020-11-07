@@ -1,6 +1,7 @@
 package de.remotelight.mobile.ui.main
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -72,6 +73,12 @@ class AddOutputFragment: BottomSheetDialogFragment() {
         val stringList = arrayStringIds.map { getString(it) }
         val outputsAdapter = context?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, stringList) }
         binding.lvAddOutput.adapter = outputsAdapter
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        // reset menu
+        mainViewModel.resetOutputMenu()
+        super.onDismiss(dialog)
     }
 
 }

@@ -48,7 +48,7 @@ class MainViewModel : ViewModel() {
         return null
     }
 
-    private fun resetOutputMenu() {
+    fun resetOutputMenu() {
         outputsMenuId = 0
         outputsMenuStringIds.postValue(outputRootCategories)
     }
