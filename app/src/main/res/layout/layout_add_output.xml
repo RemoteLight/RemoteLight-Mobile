@@ -14,11 +14,10 @@
             android:paddingHorizontal="@dimen/sheet_horizontal_padding"
             android:paddingVertical="@dimen/sheet_vertical_padding"/>
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_view_outputs"
+        <ListView
+            android:id="@+id/lvAddOutput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvAddOutput"
-            app:menu="@menu/add_output_nav_menu"/>
+            android:layout_below="@id/tvAddOutput"/>
 
 </RelativeLayout>

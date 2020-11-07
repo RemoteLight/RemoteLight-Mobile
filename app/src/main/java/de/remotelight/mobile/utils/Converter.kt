@@ -9,18 +9,18 @@ import de.remotelight.mobile.shared.Constants
 object Converter {
 
     /**
-     * Converts an output menu id (defined in [res/menu/add_output_nav_menu]) to
+     * Converts an output title id (defined in [strings.xml]) to
      * an unique output id (defined in [de.remotelight.mobile.shared.Constants])
      */
-    fun convertOutputMenuId(id: Int): String? {
+    fun convertOutputTitleId(id: Int): String? {
         return when(id) {
-            R.id.nav_output_glediator -> Constants.GLEDIATOR
-            R.id.nav_output_rlserver -> Constants.REMOTELIGHTSERVER
-            R.id.nav_output_artnet -> Constants.ARTNET
-            R.id.nav_output_e131 -> Constants.E131
-            R.id.nav_output_virtual -> Constants.VIRTUAL
-            R.id.nav_output_chain -> Constants.CHAIN
-            R.id.nav_output_multi -> Constants.MULTI
+            R.string.title_glediator -> Constants.GLEDIATOR
+            R.string.title_rlserver -> Constants.REMOTELIGHTSERVER
+            R.string.title_artnet -> Constants.ARTNET
+            R.string.title_e131 -> Constants.E131
+            R.string.title_virtual -> Constants.VIRTUAL
+            R.string.title_chain -> Constants.CHAIN
+            R.string.title_multi -> Constants.MULTI
             else -> null
         }
     }

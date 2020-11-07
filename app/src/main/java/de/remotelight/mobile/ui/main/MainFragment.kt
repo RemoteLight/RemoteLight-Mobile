@@ -46,7 +46,7 @@ class MainFragment : Fragment() {
 
         // register add-output-fragment listener
         parentFragmentManager.setFragmentResultListener(AddOutputFragment.REQUEST_KEY, viewLifecycleOwner, { requestKey, result ->
-            val selectedOutput = Converter.convertOutputMenuId(result.getInt(AddOutputFragment.KEY_DATA))
+            val selectedOutput = Converter.convertOutputTitleId(result.getInt(AddOutputFragment.KEY_DATA))
             println("### selected: $selectedOutput")
             // TODO: show setup screen
         })
