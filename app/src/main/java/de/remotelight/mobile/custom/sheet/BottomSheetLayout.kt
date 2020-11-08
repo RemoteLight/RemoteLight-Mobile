@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import de.lars.remotelightcore.RemoteLightCore
 import de.remotelight.mobile.R
 import de.remotelight.mobile.data.DefaultSetting
@@ -15,6 +16,19 @@ open class BottomSheetLayout(context: Context?, root: LinearLayout) {
         /** [layout_width="match_parent"] and [layout_height="math_parent"] */
         val DEFAULT_LAYOUT_PARAMS =
             ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+    }
+
+    private val itemKnob = BottomSheetItemKnob(context, root)
+
+    fun getKnob() = itemKnob.ivKnob
+
+    fun setupKnobListener(behavior: BottomSheetBehavior<*>) {
+        getKnob().setOnClickListener {
+            behavior.state = if(behavior.state == BottomSheetBehavior.STATE_EXPANDED)
+                BottomSheetBehavior.STATE_COLLAPSED
+            else
+                BottomSheetBehavior.STATE_EXPANDED
+        }
     }
 
 }

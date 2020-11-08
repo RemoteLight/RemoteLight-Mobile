@@ -4,11 +4,18 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.slider.Slider
 import de.remotelight.mobile.R
 
 open class BottomSheetItem(context: Context?) {
+
+}
+
+open class BottomSheetItemKnob(context: Context?, root: ViewGroup) : BottomSheetItem(context) {
+
+    val ivKnob: ImageView = root.findViewById(R.id.ivSheetKnob)
 
 }
 

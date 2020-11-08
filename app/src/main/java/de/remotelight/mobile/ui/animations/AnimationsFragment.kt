@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import de.remotelight.mobile.R
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.custom.sheet.SpeedBottomSheetLayout
@@ -40,6 +41,10 @@ class AnimationsFragment : Fragment() {
         // set up bottom sheet
         val bottomSheet = view.findViewById<LinearLayout>(R.id.bottom_sheet_holder_root)
         val bottomSheetLayout = SpeedBottomSheetLayout(context, bottomSheet)
+        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+        bottomSheetLayout.setupKnobListener(bottomSheetBehavior)
+
+        // speed slider
         bottomSheetLayout.sliderSpeed.slider.apply {
             addOnChangeListener { slider, value, fromUser ->
                 animationsViewModel.setSpeed(value.toInt())
