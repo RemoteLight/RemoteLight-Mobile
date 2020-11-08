@@ -14,10 +14,11 @@
 
     <ImageView
         android:id="@+id/ivSheetKnob"
-        android:layout_width="60dp"
-        android:layout_height="5dp"
+        android:layout_width="80dp"
+        android:layout_height="25dp"
         android:src="@drawable/bg_rectangle_round"
-        android:layout_marginBottom="@dimen/sheet_vertical_padding"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="10dp"
         android:layout_gravity="center" />
 
 </LinearLayout>
