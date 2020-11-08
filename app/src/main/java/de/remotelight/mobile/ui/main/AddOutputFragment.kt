@@ -54,12 +54,25 @@ class AddOutputFragment: BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // set list view adapter
+        val outputsAdapter = context?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, arrayListOf<String>()) }
+        binding.lvAddOutput.adapter = outputsAdapter
+
         binding.lvAddOutput.setOnItemClickListener { adapterView, view, position, id ->
-            val selOutputType = mainViewModel.onOutputMenuClicked(position)
-            // if an output was selected, return output tile as result and dismiss dialog
-            selOutputType?.let {
-                parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf(KEY_DATA to it))
-                dismiss()
+
+            // animate list view
+            adapterView.animate().apply {
+                duration = 200
+                alpha(0f)
+                withEndAction {
+                    // notify view model
+                    val selOutputType = mainViewModel.onOutputMenuClicked(position)
+                    // if an output was selected, return output tile as result and dismiss dialog
+                    selOutputType?.let {
+                        parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf(KEY_DATA to it))
+                        dismiss()
+                    }
+                }
             }
         }
 
@@ -71,8 +84,18 @@ class AddOutputFragment: BottomSheetDialogFragment() {
 
     private fun showListMenu(arrayStringIds: List<Int>) {
         val stringList = arrayStringIds.map { getString(it) }
-        val outputsAdapter = context?.let { ArrayAdapter(it, android.R.layout.simple_list_item_1, stringList) }
-        binding.lvAddOutput.adapter = outputsAdapter
+        val outputsAdapter = binding.lvAddOutput.adapter as ArrayAdapter<String>
+
+        outputsAdapter.apply {
+            clear()
+            addAll(stringList)
+            notifyDataSetChanged()
+        }
+        // animate alpha back to 1
+        binding.lvAddOutput.animate().apply {
+            duration = 200
+            alpha(1f)
+        }
     }
 
     override fun onDismiss(dialog: DialogInterface) {
