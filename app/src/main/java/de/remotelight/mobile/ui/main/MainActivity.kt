@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         // set up edge-to-edge ui
         drawerLayout.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+
         // navigation view insets: add system bars padding to padding of the navigation view
         val initialNavViewPadding = arrayOf(navigationView.paddingLeft, navigationView.paddingTop, navigationView.paddingRight, navigationView.paddingBottom)
         drawerLayout.setOnApplyWindowInsetsListener { view, windowInsets ->
@@ -48,6 +49,15 @@ class MainActivity : AppCompatActivity() {
                     windowInsets.systemWindowInsetTop + initialNavViewPadding[1],
                     initialNavViewPadding[2],
                     windowInsets.systemWindowInsetBottom + initialNavViewPadding[3])
+            windowInsets
+        }
+
+        // toolbar insets
+        val initialToolbarPadding = toolbar.paddingTop
+        val initialToolbarHeight = toolbar.layoutParams.height
+        toolbar.setOnApplyWindowInsetsListener { view, windowInsets ->
+            view.updatePadding(top = windowInsets.systemWindowInsetTop + initialToolbarPadding)
+            view.layoutParams.height = initialToolbarHeight + view.paddingTop
             windowInsets
         }
     }

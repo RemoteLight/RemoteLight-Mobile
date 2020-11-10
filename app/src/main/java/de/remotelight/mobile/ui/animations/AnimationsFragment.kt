@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import de.remotelight.mobile.R
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.custom.sheet.SpeedBottomSheetLayout
+import de.remotelight.mobile.utils.addSystemWindowInsetToPadding
 
 class AnimationsFragment : Fragment() {
 
@@ -62,6 +63,10 @@ class AnimationsFragment : Fragment() {
         animationsViewModel.speedData.observe(viewLifecycleOwner, Observer {
             bottomSheetLayout.sliderSpeed.slider.value = it.toFloat()
         })
+
+        // bottom sheet insets
+        bottomSheet.addSystemWindowInsetToPadding(bottom = true)
+        // TODO: also add window insets to bottom sheet height/peek height
     }
 
 

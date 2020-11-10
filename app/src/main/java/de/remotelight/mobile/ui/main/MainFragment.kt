@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.databinding.FragmentMainBinding
 import de.remotelight.mobile.utils.Converter
+import de.remotelight.mobile.utils.addSystemWindowInsetToMargin
 
 /**
  * Fragment that shows and set ups devices.
@@ -50,6 +51,9 @@ class MainFragment : Fragment() {
             println("### selected: $selectedOutput")
             // TODO: show setup screen
         })
+
+        // fab window insets
+        binding.fabAddOutput.addSystemWindowInsetToMargin(bottom = true, right = true)
     }
 
 }
