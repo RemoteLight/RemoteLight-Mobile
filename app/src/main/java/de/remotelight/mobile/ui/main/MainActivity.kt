@@ -1,8 +1,10 @@
 package de.remotelight.mobile.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.updatePadding
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -36,6 +38,18 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_main, R.id.nav_colors, R.id.nav_animations, R.id.nav_scenes, R.id.nav_musicsync), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
+
+        // set up edge-to-edge ui
+        drawerLayout.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        // navigation view insets: add system bars padding to padding of the navigation view
+        val initialNavViewPadding = arrayOf(navigationView.paddingLeft, navigationView.paddingTop, navigationView.paddingRight, navigationView.paddingBottom)
+        drawerLayout.setOnApplyWindowInsetsListener { view, windowInsets ->
+            navigationView.updatePadding(windowInsets.systemWindowInsetLeft + initialNavViewPadding[0],
+                    windowInsets.systemWindowInsetTop + initialNavViewPadding[1],
+                    initialNavViewPadding[2],
+                    windowInsets.systemWindowInsetBottom + initialNavViewPadding[3])
+            windowInsets
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
