@@ -10,4 +10,6 @@
 
     <color name="colorPrimaryText">#FFFFFF</color>
     <color name="colorSecondaryText">#99FFFFFF</color>
+
+    <color name="colorDialogBackground">#2E2E2E</color>
 </resources>

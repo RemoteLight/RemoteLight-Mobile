@@ -24,8 +24,6 @@
         <item name="colorNavigationItem">@color/menu_item_color_state</item>
         <item name="colorNavigationItemSelected">@color/colorPrimaryText</item>
         <item name="drawableNavigationItemBackground">@drawable/menu_background_color_state</item>
-
-        <item name="bottomSheetDialogTheme">@style/Widget.App.BottomSheetDialog</item>
     </style>
 
     <style name="Widget.App.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
@@ -45,12 +43,17 @@
     </style>
 
     <!-- Modal Bottom Sheet Style -->
+    <style name="BottomSheetDialogTheme" parent="Widget.App.BottomSheetDialog">
+        <item name="android:navigationBarColor">@color/colorDialogBackground</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
     <style name="Widget.App.BottomSheetDialog" parent="@style/Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/Widget.App.BottomSheetFragment</item>
     </style>
 
     <style name="Widget.App.BottomSheetFragment" parent="Widget.MaterialComponents.BottomSheet">
-        <item name="android:windowIsFloating">false</item>
         <item name="shapeAppearance">@style/ShapeAppearance.RoundCorners</item>
     </style>
 
