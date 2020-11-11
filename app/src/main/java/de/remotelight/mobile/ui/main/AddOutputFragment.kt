@@ -2,6 +2,7 @@ package de.remotelight.mobile.ui.main
 
 import android.app.Dialog
 import android.content.DialogInterface
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +25,10 @@ class AddOutputFragment: BottomSheetDialogFragment() {
         const val KEY_DATA = "output_id"
     }
 
-    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+    override fun getTheme(): Int {
+        return if(resources.configuration.orientation != Configuration.ORIENTATION_LANDSCAPE) R.style.BottomSheetDialogTheme
+        else R.style.BottomSheetDialogTheme_Landscape
+    }
 
     private var _binding: LayoutAddOutputBinding? = null
     private val binding get() = _binding!!
