@@ -1,10 +1,13 @@
 package de.remotelight.mobile.ui.animations
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +17,6 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import de.remotelight.mobile.R
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.custom.sheet.SpeedBottomSheetLayout
-import de.remotelight.mobile.utils.addSystemWindowInsetToPadding
 
 class AnimationsFragment : Fragment() {
 
@@ -25,6 +27,10 @@ class AnimationsFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        // set opaque navigation bar color in portrait mode
+        if(resources.configuration.orientation != Configuration.ORIENTATION_LANDSCAPE) {
+            activity?.let { it.window.navigationBarColor = ResourcesCompat.getColor(resources, R.color.colorNavigationBar, null) }
+        }
         animationsViewModel =
                 ViewModelProvider(this).get(AnimationsViewModel::class.java)
         return inflater.inflate(R.layout.fragment_animations, container, false)
@@ -65,9 +71,19 @@ class AnimationsFragment : Fragment() {
         })
 
         // bottom sheet insets
-        bottomSheet.addSystemWindowInsetToPadding(bottom = true)
-        // TODO: also add window insets to bottom sheet height/peek height
+        val (initialSheetLeft, initialSheetRight, initialSheetBottom, initialPeekHeight) =
+                listOf(bottomSheet.paddingLeft, bottomSheet.paddingRight, bottomSheet.paddingBottom, bottomSheetBehavior.peekHeight)
+        bottomSheet.setOnApplyWindowInsetsListener { view, insets ->
+            view.updatePadding(insets.systemWindowInsetLeft + initialSheetLeft, view.paddingTop, insets.systemWindowInsetRight + initialSheetRight, insets.systemWindowInsetBottom + initialSheetBottom)
+            bottomSheetBehavior.peekHeight = insets.systemWindowInsetBottom + initialPeekHeight
+            insets
+        }
     }
 
+    override fun onDestroyView() {
+        // reset navigation bar color
+        activity?.let { it.window.navigationBarColor = ResourcesCompat.getColor(resources, android.R.color.transparent, null) }
+        super.onDestroyView()
+    }
 
 }

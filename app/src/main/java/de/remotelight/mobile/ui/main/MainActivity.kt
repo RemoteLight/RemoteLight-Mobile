@@ -53,10 +53,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         // toolbar insets
-        val initialToolbarPadding = toolbar.paddingTop
+        val initialToolbarPadding = arrayOf(toolbar.paddingLeft, toolbar.paddingTop)
         val initialToolbarHeight = toolbar.layoutParams.height
         toolbar.setOnApplyWindowInsetsListener { view, windowInsets ->
-            view.updatePadding(top = windowInsets.systemWindowInsetTop + initialToolbarPadding)
+            view.updatePadding(left = windowInsets.systemWindowInsetLeft + initialToolbarPadding[0], top = windowInsets.systemWindowInsetTop + initialToolbarPadding[1])
             view.layoutParams.height = initialToolbarHeight + view.paddingTop
             windowInsets
         }
