@@ -17,6 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import de.remotelight.mobile.R
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.custom.sheet.SpeedBottomSheetLayout
+import de.remotelight.mobile.utils.addSystemWindowInsetToPadding
 
 class AnimationsFragment : Fragment() {
 
@@ -78,6 +79,9 @@ class AnimationsFragment : Fragment() {
             bottomSheetBehavior.peekHeight = insets.systemWindowInsetBottom + initialPeekHeight
             insets
         }
+
+        // recycler view insets
+        rvAnimations.addSystemWindowInsetToPadding(left = true, right = true, bottom = true)
     }
 
     override fun onDestroyView() {

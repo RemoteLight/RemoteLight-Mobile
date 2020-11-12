@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.remotelight.mobile.R
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
+import de.remotelight.mobile.utils.addSystemWindowInsetToPadding
 
 class ScenesFragment : Fragment() {
 
@@ -38,6 +39,9 @@ class ScenesFragment : Fragment() {
         scenesViewModel.getScenes().observe(viewLifecycleOwner, Observer {
             (rvScenes.adapter as EffectRecyclerViewAdapter).setList(it)
         })
+
+        // recycler view insets
+        rvScenes.addSystemWindowInsetToPadding(left = true, right = true, bottom = true)
     }
 
 }

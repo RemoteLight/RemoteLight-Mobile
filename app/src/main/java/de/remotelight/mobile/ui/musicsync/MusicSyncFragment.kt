@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import de.remotelight.mobile.R
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
+import de.remotelight.mobile.utils.addSystemWindowInsetToPadding
 
 class MusicSyncFragment : Fragment() {
 
@@ -38,6 +39,9 @@ class MusicSyncFragment : Fragment() {
         musicSyncViewModel.getMusicEffects().observe(viewLifecycleOwner, Observer {
             (rvMusicSync.adapter as EffectRecyclerViewAdapter).setList(it)
         })
+
+        // recycler view insets
+        rvMusicSync.addSystemWindowInsetToPadding(left = true, right = true, bottom = true)
     }
 
 }
