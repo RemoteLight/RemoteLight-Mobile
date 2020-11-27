@@ -23,4 +23,8 @@
     <string name="title_chain">Chain</string>
     <string name="title_multi">Multi</string>
     <string name="title_rlserver">RemoteLightServer</string>
+    <string name="label_name">Name</string>
+    <string name="label_pixels">Pixels</string>
+    <string name="error_id_already_used">The name is already in use</string>
+    <string name="desc_close_dialog">Close dialog</string>
 </resources>

@@ -1,4 +1,4 @@
-package de.remotelight.mobile.ui.main
+package de.remotelight.mobile.ui.main.dialogs
 
 import android.app.Dialog
 import android.content.DialogInterface
@@ -16,6 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import de.remotelight.mobile.R
 import de.remotelight.mobile.databinding.LayoutAddOutputBinding
+import de.remotelight.mobile.ui.main.MainViewModel
 import de.remotelight.mobile.utils.Converter.pxToDp
 
 class AddOutputFragment: BottomSheetDialogFragment() {

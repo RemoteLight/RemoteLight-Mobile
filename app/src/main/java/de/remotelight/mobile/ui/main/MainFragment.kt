@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import de.lars.remotelightcore.devices.arduino.Arduino
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.databinding.FragmentMainBinding
+import de.remotelight.mobile.ui.main.dialogs.AddOutputFragment
+import de.remotelight.mobile.ui.main.dialogs.OutputSetupFragment
 import de.remotelight.mobile.utils.Converter
 import de.remotelight.mobile.utils.addSystemWindowInsetToMargin
 
@@ -50,6 +53,11 @@ class MainFragment : Fragment() {
             val selectedOutput = Converter.convertOutputTitleId(result.getInt(AddOutputFragment.KEY_DATA))
             println("### selected: $selectedOutput")
             // TODO: show setup screen
+            // TODO: remove test output
+            val testOutput = Arduino("Demo", null)
+            testOutput.pixels = 60
+            val outputSetupFragment = OutputSetupFragment(testOutput)
+            outputSetupFragment.show(parentFragmentManager, outputSetupFragment.tag)
         })
 
         // fab window insets
