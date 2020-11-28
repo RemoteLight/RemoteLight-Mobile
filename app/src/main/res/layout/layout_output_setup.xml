@@ -28,7 +28,7 @@
             app:iconTint="@color/colorPrimaryText"
             android:layout_alignParentEnd="true"
             style="@style/Widget.App.Button.IconOnly"/>
-        
+
     </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/colorDialogBackground"
+        style="@style/Widget.App.TextInputLayout"
         android:hint="@string/label_name">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -49,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/colorDialogBackground"
+        style="@style/Widget.App.TextInputLayout"
         android:hint="@string/label_pixels">
 
         <com.google.android.material.textfield.TextInputEditText

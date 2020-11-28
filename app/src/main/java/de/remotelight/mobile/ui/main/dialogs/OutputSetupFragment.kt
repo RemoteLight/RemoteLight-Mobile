@@ -17,7 +17,7 @@ import de.remotelight.mobile.databinding.LayoutOutputSetupBinding
 import de.remotelight.mobile.utils.Converter.pxToDp
 import de.remotelight.mobile.utils.NumberInputFilter
 
-class OutputSetupFragment(var output: Output?): BottomSheetDialogFragment() {
+class OutputSetupFragment : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int {
         return if(resources.configuration.orientation != Configuration.ORIENTATION_LANDSCAPE) R.style.BottomSheetDialogTheme
@@ -26,6 +26,7 @@ class OutputSetupFragment(var output: Output?): BottomSheetDialogFragment() {
 
     private var _binding: LayoutOutputSetupBinding? = null
     private val binding get() = _binding!!
+    private var output: Output? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = LayoutOutputSetupBinding.inflate(inflater, container, false)
@@ -39,7 +40,7 @@ class OutputSetupFragment(var output: Output?): BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // add pixels filed input filter
+        // add pixels field input filter
         binding.tfOutputPixels.editText?.filters = arrayOf(NumberInputFilter(IntRange(2, Int.MAX_VALUE)))
         // close button
         binding.btnCloseOutputSetup.setOnClickListener { dismiss() }
@@ -61,6 +62,19 @@ class OutputSetupFragment(var output: Output?): BottomSheetDialogFragment() {
                 binding.tfOutputName.error = null
             }
         }
+    }
+
+    companion object {
+
+        /**
+         * Create a new output setup bottom sheet for the given output object.
+         * If output is [null], the dialog will switch to create-mode.
+         */
+        fun newInstance(output: Output? = null) =
+            OutputSetupFragment().apply {
+                this.output = output
+            }
+
     }
 
 }

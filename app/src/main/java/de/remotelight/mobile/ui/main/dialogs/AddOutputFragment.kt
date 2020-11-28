@@ -19,7 +19,7 @@ import de.remotelight.mobile.databinding.LayoutAddOutputBinding
 import de.remotelight.mobile.ui.main.MainViewModel
 import de.remotelight.mobile.utils.Converter.pxToDp
 
-class AddOutputFragment: BottomSheetDialogFragment() {
+class AddOutputFragment : BottomSheetDialogFragment() {
 
     companion object {
         const val REQUEST_KEY = "output_selected"

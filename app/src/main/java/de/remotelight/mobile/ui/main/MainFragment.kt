@@ -56,7 +56,7 @@ class MainFragment : Fragment() {
             // TODO: remove test output
             val testOutput = Arduino("Demo", null)
             testOutput.pixels = 60
-            val outputSetupFragment = OutputSetupFragment(testOutput)
+            val outputSetupFragment = OutputSetupFragment.newInstance(testOutput)
             outputSetupFragment.show(parentFragmentManager, outputSetupFragment.tag)
         })
 
