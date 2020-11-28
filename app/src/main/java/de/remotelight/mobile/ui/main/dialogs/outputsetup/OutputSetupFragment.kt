@@ -1,4 +1,4 @@
-package de.remotelight.mobile.ui.main.dialogs
+package de.remotelight.mobile.ui.main.dialogs.outputsetup
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -6,14 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import de.lars.remotelightcore.RemoteLightCore
-import de.lars.remotelightcore.out.Output
 import de.lars.remotelightcore.utils.OutputUtil
 import de.remotelight.mobile.R
 import de.remotelight.mobile.databinding.LayoutOutputSetupBinding
+import de.remotelight.mobile.ui.main.MainViewModel
 import de.remotelight.mobile.utils.Converter.pxToDp
 import de.remotelight.mobile.utils.NumberInputFilter
 
@@ -26,7 +28,7 @@ class OutputSetupFragment : BottomSheetDialogFragment() {
 
     private var _binding: LayoutOutputSetupBinding? = null
     private val binding get() = _binding!!
-    private var output: Output? = null
+    private val mainViewModel: MainViewModel by activityViewModels() // shared view model
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = LayoutOutputSetupBinding.inflate(inflater, container, false)
@@ -44,17 +46,17 @@ class OutputSetupFragment : BottomSheetDialogFragment() {
         binding.tfOutputPixels.editText?.filters = arrayOf(NumberInputFilter(IntRange(2, Int.MAX_VALUE)))
         // close button
         binding.btnCloseOutputSetup.setOnClickListener { dismiss() }
-        // dialog title
-        binding.tvOutputType.text = OutputUtil.getOutputTypeAsString(output)
 
-        // show values of the output if not null
-        output?.let {
-            binding.tfOutputName.editText?.setText(it.id)
-            binding.tfOutputPixels.editText?.setText(it.pixels.toString())
-        }
+        // observe output live data
+        mainViewModel.getCurrentSetupOutput().observe(viewLifecycleOwner, Observer {
+            binding.tvOutputType.text = OutputUtil.getOutputTypeAsString(it) // dialog title
+            binding.tfOutputName.editText?.setText(it?.id ?: "") // name field
+            binding.tfOutputPixels.editText?.setText(it?.pixels?.toString() ?: "0") // pixels field
+        })
 
         // observe input widgets
         binding.tfOutputName.editText?.doOnTextChanged { text, start, before, count ->
+            val output = mainViewModel.getCurrentSetupOutput().value
             // check if name is already in use
             if(text != null && text == output?.id && RemoteLightCore.getInstance().deviceManager.isIdUsed(text.toString())) {
                 binding.tfOutputName.error = getString(R.string.error_id_already_used)
@@ -62,19 +64,6 @@ class OutputSetupFragment : BottomSheetDialogFragment() {
                 binding.tfOutputName.error = null
             }
         }
-    }
-
-    companion object {
-
-        /**
-         * Create a new output setup bottom sheet for the given output object.
-         * If output is [null], the dialog will switch to create-mode.
-         */
-        fun newInstance(output: Output? = null) =
-            OutputSetupFragment().apply {
-                this.output = output
-            }
-
     }
 
 }

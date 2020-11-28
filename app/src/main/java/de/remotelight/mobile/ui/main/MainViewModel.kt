@@ -3,6 +3,7 @@ package de.remotelight.mobile.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import de.lars.remotelightcore.out.Output
 import de.remotelight.mobile.R
 
 class MainViewModel : ViewModel() {
@@ -51,6 +52,20 @@ class MainViewModel : ViewModel() {
     fun resetOutputMenu() {
         outputsMenuId = 0
         outputsMenuStringIds.postValue(outputRootCategories)
+    }
+
+    /* ====================
+     * Output setup dialog
+     * ==================== */
+
+    private val currSetupOutput: MutableLiveData<Output?> by lazy {
+        MutableLiveData<Output?>(null)
+    }
+
+    fun getCurrentSetupOutput() = currSetupOutput as LiveData<Output?>
+
+    fun setSetupOutput(output: Output?) {
+        currSetupOutput.postValue(output)
     }
 
 }

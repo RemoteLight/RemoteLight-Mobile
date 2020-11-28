@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.lars.remotelightcore.devices.arduino.Arduino
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.databinding.FragmentMainBinding
 import de.remotelight.mobile.ui.main.dialogs.AddOutputFragment
-import de.remotelight.mobile.ui.main.dialogs.OutputSetupFragment
+import de.remotelight.mobile.ui.main.dialogs.outputsetup.OutputSetupFragment
 import de.remotelight.mobile.utils.Converter
 import de.remotelight.mobile.utils.addSystemWindowInsetToMargin
 
@@ -22,14 +22,13 @@ class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by activityViewModels() // shared view model
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -56,7 +55,8 @@ class MainFragment : Fragment() {
             // TODO: remove test output
             val testOutput = Arduino("Demo", null)
             testOutput.pixels = 60
-            val outputSetupFragment = OutputSetupFragment.newInstance(testOutput)
+            mainViewModel.setSetupOutput(testOutput)
+            val outputSetupFragment = OutputSetupFragment()
             outputSetupFragment.show(parentFragmentManager, outputSetupFragment.tag)
         })
 
