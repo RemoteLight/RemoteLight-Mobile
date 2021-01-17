@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
         <TextView
             android:id="@+id/tvOutputType"
             android:layout_width="wrap_content"
@@ -33,7 +33,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:theme="@style/Widget.App.ThemeOverlay"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,7 +90,8 @@
                         android:layout_height="wrap_content"
                         android:focusable="false"
                         android:clickable="true"
-                        android:inputType="text"/>
+                        android:cursorVisible="false"
+                        android:inputType="textNoSuggestions"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 

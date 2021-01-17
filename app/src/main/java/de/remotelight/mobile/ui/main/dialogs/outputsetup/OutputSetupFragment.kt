@@ -90,6 +90,7 @@ abstract class OutputSetupFragment : BottomSheetDialogFragment() {
     }
 
     private fun showRgbOrderDialog() {
+        var selectedRgbOrder = 0
         context?.let {
             MaterialAlertDialogBuilder(it)
                 .setTitle(getString(R.string.label_rgb_order))
@@ -98,11 +99,12 @@ abstract class OutputSetupFragment : BottomSheetDialogFragment() {
                 }
                 .setPositiveButton(getString(R.string.action_ok)) { dialog, which ->
                     // update rgb order and close dialog
+                    mainViewModel.setRgbOrder(selectedRgbOrder)
                     onRgbOrderUpdated()
                     dialog.dismiss()
                 }
                 .setSingleChoiceItems(mainViewModel.listRgbOrder, mainViewModel.getSelectedRgbOrder()) { dialog, which ->
-                    mainViewModel.setRgbOrder(which)
+                    selectedRgbOrder = which
                 }
                 .show()
         }
