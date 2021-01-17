@@ -31,7 +31,9 @@
     <string name="label_patch_shift_pixels">Shift pixels</string>
     <string name="label_patch_clone">Clone</string>
     <string name="label_patch_mirror">Mirror</string>
-    
+    <string name="label_com_port">Serial port</string>
+
+    <string name="error_no_comports">No serial ports found.</string>
     <string name="error_id_already_used">The name is already in use</string>
     <string name="desc_close_dialog">Close dialog</string>
 

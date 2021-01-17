@@ -1,5 +1,6 @@
 package de.remotelight.mobile.ui.main.dialogs.outputsetup
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.text.InputType
@@ -15,9 +16,11 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import de.lars.remotelightcore.RemoteLightCore
 import de.lars.remotelightcore.devices.arduino.RgbOrder
+import de.lars.remotelightcore.out.Output
 import de.lars.remotelightcore.utils.OutputUtil
 import de.remotelight.mobile.R
 import de.remotelight.mobile.databinding.LayoutOutputSetupBinding
@@ -33,7 +36,7 @@ abstract class OutputSetupFragment : BottomSheetDialogFragment() {
     }
 
     private var _binding: LayoutOutputSetupBinding? = null
-    private val binding get() = _binding!!
+    protected val binding get() = _binding!!
     private val mainViewModel: MainViewModel by activityViewModels() // shared view model
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -81,8 +84,16 @@ abstract class OutputSetupFragment : BottomSheetDialogFragment() {
 
         // add click listener to save button
         binding.btnSaveOutput.setOnClickListener {
-            // TODO: save values to output
-            onSaveOutput()
+            mainViewModel.getCurrentSetupOutput().value?.let {
+                it.id = binding.tfOutputName.editText?.text.toString()
+                it.pixels = binding.tfOutputPixels.editText?.text.toString().toInt()
+                it.outputPatch.shift = binding.tfPatchShiftPixels.editText?.text.toString().toInt()
+                it.outputPatch.clone = binding.tfPatchClone.editText?.text.toString().toInt()
+                it.outputPatch.isCloneMirrored = binding.switchPathMirror.isChecked
+                onSaveOutput(it)
+            }
+            // close bottom sheet
+            dismiss()
         }
 
         // setup input widgets in subclass
@@ -129,27 +140,40 @@ abstract class OutputSetupFragment : BottomSheetDialogFragment() {
     /**
      * Save values from components to the output
      */
-    abstract fun onSaveOutput()
+    abstract fun onSaveOutput(output: Output)
 
     //---
     // Some helper methods for creating common input widgets
 
-    fun createStringInputField(hint: String? = null): TextInputLayout? {
-        val inputLayout = context?.let { TextInputLayout(it, null, R.style.Widget_App_TextInputLayout) }
-        inputLayout?.apply {
-            layoutParams = layoutParams.apply {
-                width = LinearLayout.LayoutParams.MATCH_PARENT
-                height = LinearLayout.LayoutParams.WRAP_CONTENT
-            }
+    fun createStringInputField(context: Context, hint: String? = null): TextInputLayout {
+        // TODO: fix style of TextInputLayout
+        val inputLayout = TextInputLayout(context, null, R.style.Widget_App_TextInputLayout)
+        val editText = TextInputEditText(context)
+        editText.layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        inputLayout.apply {
             boxBackgroundColor = ContextCompat.getColor(context, R.color.colorDialogBackground)
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
             setHint(hint)
+            addView(editText)
         }
         return inputLayout
     }
 
-    fun createNumberInputField(hint: String? = null): TextInputLayout? {
-        val inputLayout = createStringInputField(hint)
-        inputLayout?.editText?.inputType = InputType.TYPE_NUMBER_VARIATION_NORMAL
+    fun createNumberInputField(context: Context, hint: String? = null): TextInputLayout {
+        val inputLayout = createStringInputField(context, hint)
+        inputLayout.editText?.inputType = InputType.TYPE_NUMBER_VARIATION_NORMAL
+        return inputLayout
+    }
+
+    fun createClickableInputField(context: Context, hint: String? = null): TextInputLayout {
+        val inputLayout = createStringInputField(context, hint)
+        inputLayout.editText?.apply {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                focusable = TextInputLayout.NOT_FOCUSABLE
+            }
+            isClickable = true
+            isCursorVisible = false
+        }
         return inputLayout
     }
 
