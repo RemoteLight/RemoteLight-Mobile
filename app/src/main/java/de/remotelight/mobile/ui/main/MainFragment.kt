@@ -11,7 +11,7 @@ import de.lars.remotelightcore.devices.arduino.Arduino
 import de.remotelight.mobile.custom.EffectRecyclerViewAdapter
 import de.remotelight.mobile.databinding.FragmentMainBinding
 import de.remotelight.mobile.ui.main.dialogs.AddOutputFragment
-import de.remotelight.mobile.ui.main.dialogs.outputsetup.OutputSetupFragment
+import de.remotelight.mobile.ui.main.dialogs.outputsetup.ArduinoOutputSetupFragment
 import de.remotelight.mobile.utils.Converter
 import de.remotelight.mobile.utils.addSystemWindowInsetToMargin
 
@@ -56,7 +56,7 @@ class MainFragment : Fragment() {
             val testOutput = Arduino("Demo", null)
             testOutput.pixels = 60
             mainViewModel.setSetupOutput(testOutput)
-            val outputSetupFragment = OutputSetupFragment()
+            val outputSetupFragment = ArduinoOutputSetupFragment()
             outputSetupFragment.show(parentFragmentManager, outputSetupFragment.tag)
         })
 

@@ -10,9 +10,7 @@
 
     <string name="nav_header_title">RemoteLight</string>
     <string name="nav_header_subtitle">LED Control Software</string>
-
-    <string name="label_brightness">Brightness</string>
-    <string name="label_speed">Speed</string>
+    
     <string name="title_add_output">Add a new output</string>
     <string name="title_serial">Serial</string>
     <string name="title_glediator">Glediator</string>
@@ -23,8 +21,21 @@
     <string name="title_chain">Chain</string>
     <string name="title_multi">Multi</string>
     <string name="title_rlserver">RemoteLightServer</string>
+    <string name="title_output_patch">Output patch</string>
+
+    <string name="label_brightness">Brightness</string>
+    <string name="label_speed">Speed</string>
     <string name="label_name">Name</string>
     <string name="label_pixels">Pixels</string>
+    <string name="label_rgb_order">RGB Order</string>
+    <string name="label_patch_shift_pixels">Shift pixels</string>
+    <string name="label_patch_clone">Clone</string>
+    <string name="label_patch_mirror">Mirror</string>
+    
     <string name="error_id_already_used">The name is already in use</string>
     <string name="desc_close_dialog">Close dialog</string>
+
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">Ok</string>
 </resources>

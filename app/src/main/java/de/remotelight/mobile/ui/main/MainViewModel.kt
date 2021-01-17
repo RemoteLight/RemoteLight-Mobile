@@ -3,6 +3,8 @@ package de.remotelight.mobile.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import de.lars.remotelightcore.devices.Device
+import de.lars.remotelightcore.devices.arduino.RgbOrder
 import de.lars.remotelightcore.out.Output
 import de.remotelight.mobile.R
 
@@ -57,6 +59,7 @@ class MainViewModel : ViewModel() {
     /* ====================
      * Output setup dialog
      * ==================== */
+    val listRgbOrder = RgbOrder.values().map { it.toString() }.toTypedArray()
 
     private val currSetupOutput: MutableLiveData<Output?> by lazy {
         MutableLiveData<Output?>(null)
@@ -66,6 +69,26 @@ class MainViewModel : ViewModel() {
 
     fun setSetupOutput(output: Output?) {
         currSetupOutput.postValue(output)
+    }
+
+    /**
+     * Get the index of the selected RGB order
+     */
+    fun getSelectedRgbOrder(): Int {
+        currSetupOutput.value?.let {
+            if(it is Device) { // TODO: add rgbOrder attribute to Output class in remotelight-core
+                return it.rgbOrder.ordinal
+            }
+        }
+        return 0
+    }
+
+    fun setRgbOrder(rgbOrderIndex: Int) {
+        currSetupOutput.value?.let {
+            if(it is Device) {
+                it.rgbOrder = RgbOrder.values()[rgbOrderIndex]
+            }
+        }
     }
 
 }
