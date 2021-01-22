@@ -1,6 +1,11 @@
 package de.remotelight.mobile.ui.main.dialogs.outputsetup
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import de.lars.remotelightcore.devices.arduino.ComPort
@@ -13,19 +18,30 @@ class ArduinoOutputSetupFragment : OutputSetupFragment() {
     private var comPortIndex: Int = -1
 
     override fun onInitLayout(layout: LinearLayout) {
-        fieldComPorts = createClickableInputField(requireContext(), getString(R.string.label_com_port))
-        fieldComPorts?.let {
-            it.editText?.setOnClickListener {
-                showComPortDialog()
+        val fragmentArduino = ArduinoFragment()
+        parentFragmentManager.beginTransaction().add(layout.id, fragmentArduino).commit()
             }
-            layout.addView(it)
-        }
-    }
 
     override fun onSaveOutput(output: Output) {
         // TODO: save to output
     }
 
+}
+
+class ArduinoFragment:Fragment(){
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val fieldSerialPort=container?.findViewById<TextInputLayout>(R.id.tfSerialPort)
+        fieldSerialPort?.let {
+            it.editText?.setOnClickListener {
+                showComPortDialog()
+            }
+        }
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
     private fun showComPortDialog() {
         var selectedComPort = 0
         // TODO: remove com port due jSerialComm does not support android yet
@@ -54,5 +70,4 @@ class ArduinoOutputSetupFragment : OutputSetupFragment() {
         }
         dialogBuilder.show()
     }
-
 }
